@@ -2,27 +2,13 @@ const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config();
 const colors = require("colors");
-const multer = require("multer");
-const path = require("path");
 const cors = require("cors");
 
 const connectDB = require("./config/mongoDB");
 const logger = require("./middlewares/logger");
+const upload = require("./middlewares/upload");
 
 const userRoutes = require("./Routes/userRoutes");
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    const fileExt = path.extname(file.originalname);
-    const fileName = Math.floor(Math.random() * 1_000_000).toString(16);
-    cb(null, `${fileName}${fileExt}`);
-  },
-});
-
-const upload = multer({ storage: storage });
 
 const PORT = process.env.PORT;
 const dbUrl = process.env.DATABASE_URI;
