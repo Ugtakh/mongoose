@@ -7,6 +7,7 @@ const cors = require("cors");
 const connectDB = require("./config/mongoDB");
 const logger = require("./middlewares/logger");
 const upload = require("./middlewares/upload");
+const error = require("./middlewares/error");
 
 const userRoutes = require("./Routes/userRoutes");
 
@@ -19,6 +20,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(logger);
+
 app.use("/uploads", express.static("uploads"));
 
 app.use("/users", userRoutes);
@@ -35,10 +37,10 @@ app.post("/upload", upload.single("image"), (req, res) => {
   });
 });
 
-console.log(
-  `-------------------------------------------------------------------`.yellow
-);
+app.use(error);
+
 connectDB(dbUrl);
+
 app.listen(PORT, () => {
   console.log(`Сервер ${PORT} порт дээр аслаа`.rainbow);
 });
