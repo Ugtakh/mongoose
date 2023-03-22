@@ -87,4 +87,27 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, getAllUsers, getUser, updateUser, deleteUser };
+const login = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.find({ email, password });
+    console.log("user", user);
+    if (!user.length) {
+      res.status(400).json({ message: `Имэйл эсвэл нууц үг буруу байна` });
+    }
+
+    res.status(200).json({ message: `Амжилттай нэвтэрлээ`, user });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  login,
+  createUser,
+  getAllUsers,
+  getUser,
+  updateUser,
+  deleteUser,
+};

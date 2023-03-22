@@ -10,7 +10,8 @@ const upload = require("./middlewares/upload");
 const cloudinary = require("./utils/cloudinary");
 const error = require("./middlewares/error");
 
-const userRoutes = require("./Routes/userRoutes");
+const userRoutes = require("./routes/userRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 const PORT = process.env.PORT;
 const dbUrl = process.env.DATABASE_URI;
@@ -25,6 +26,7 @@ app.use(logger);
 app.use("/uploads", express.static("uploads"));
 
 app.use("/users", userRoutes);
+app.use("/categories", categoryRoutes);
 
 app.get("/", async (req, res) => {
   res.json({ message: "Сайн байна уу." });
