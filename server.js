@@ -52,3 +52,5 @@ connectDB(dbUrl);
 app.listen(PORT, () => {
   console.log(`Сервер ${PORT} порт дээр аслаа`.rainbow);
 });
+
+module.exports = app;
