@@ -12,6 +12,7 @@ const error = require("./middlewares/error");
 
 const userRoutes = require("./routes/userRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+const travelRoutes = require("./routes/travelRoutes");
 
 const PORT = process.env.PORT;
 const dbUrl = process.env.DATABASE_URI;
@@ -27,6 +28,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use("/users", userRoutes);
 app.use("/categories", categoryRoutes);
+app.use("/travels", travelRoutes);
 
 app.get("/", async (req, res) => {
   res.json({ message: "Сайн байна уу." });
