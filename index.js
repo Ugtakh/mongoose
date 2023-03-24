@@ -10,9 +10,9 @@ const upload = require("./middlewares/upload");
 const cloudinary = require("./utils/cloudinary");
 const error = require("./middlewares/error");
 
-const userRoutes = require("./routes/userRoutes");
-const categoryRoutes = require("./routes/categoryRoutes");
-const travelRoutes = require("./routes/travelRoutes");
+const userRoutes = require("./Routes/userRoutes");
+const categoryRoutes = require("./Routes/categoryRoutes");
+const travelRoutes = require("./Routes/travelRoutes");
 
 const PORT = process.env.PORT;
 const dbUrl = process.env.DATABASE_URI;
