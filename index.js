@@ -13,6 +13,8 @@ const error = require("./middlewares/error");
 const userRoutes = require("./Routes/userRoutes");
 const categoryRoutes = require("./Routes/categoryRoutes");
 const travelRoutes = require("./Routes/travelRoutes");
+const orderRoutes = require("./Routes/orderRoutes");
+const cartItemRoutes = require("./Routes/carItemRoutes");
 
 const PORT = process.env.PORT;
 const dbUrl = process.env.DATABASE_URI;
@@ -29,6 +31,8 @@ app.use("/uploads", express.static("uploads"));
 app.use("/users", userRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/travels", travelRoutes);
+app.use("/orders", orderRoutes);
+app.use("/cartItem", cartItemRoutes);
 
 app.get("/", async (req, res) => {
   res.json({ message: "Сайн байна уу." });

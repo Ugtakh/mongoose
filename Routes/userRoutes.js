@@ -15,10 +15,7 @@ const router = express.Router();
 router.route("/login").post(login);
 router.route("/register").post(register);
 
-router
-  .route("/")
-  .post(createUser)
-  .get(checkLogin, authorization("User"), getAllUsers);
+router.route("/").post(createUser).get(getAllUsers);
 
 router
   .route("/:id")
