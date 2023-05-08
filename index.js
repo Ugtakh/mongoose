@@ -16,6 +16,9 @@ const travelRoutes = require("./Routes/travelRoutes");
 const orderRoutes = require("./Routes/orderRoutes");
 const cartItemRoutes = require("./Routes/carItemRoutes");
 
+const authRoutes = require("./Routes/authRoutes");
+const sendEmail = require("./utils/sendEmail");
+
 const PORT = process.env.PORT;
 const dbUrl = process.env.DATABASE_URI;
 
@@ -34,8 +37,22 @@ app.use("/travels", travelRoutes);
 app.use("/orders", orderRoutes);
 app.use("/cartItem", cartItemRoutes);
 
+app.use("/api", authRoutes);
+
 app.get("/", async (req, res) => {
-  res.json({ message: "Сайн байна уу." });
+  // res.json({ message: "Сайн байна уу." });
+  try {
+    const r = await sendEmail(
+      "EKO",
+      "bilguunerkh@gmail.com",
+      "Khicheelee hiildee ....."
+    );
+    console.log("RES", r);
+    res.send("Hello API Sent Email");
+  } catch (error) {
+    console.log("ERR", error);
+    res.status(400).send(error);
+  }
 });
 
 app.post("/upload", upload.single("image"), async (req, res) => {
